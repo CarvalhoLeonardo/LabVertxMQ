@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- * Copyright 2017 Intel Corporation * * Licensed under the Apache License, 
+	Version 2.0 (the "License"); * you may not use this file except in compliance 
+	with the License. * You may obtain a copy of the License at * * http://www.apache.org/licenses/LICENSE-2.0 
+	* * Unless required by applicable law or agreed to in writing, software * 
+	distributed under the License is distributed on an "AS IS" BASIS, * WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. * See the 
+	License for the specific language governing permissions and * limitations 
+	under the License. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>leonardo.github.study</groupId>
+	<artifactId>vertxmq</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<apachelog-version>2.11.0</apachelog-version>
+	</properties>
+
+	<build>
+		<sourceDirectory>src/main/java/</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.17</version>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<configLocation>google_checks.xml</configLocation>
+							<consoleOutput>true</consoleOutput>
+							<failOnViolation>true</failOnViolation>
+							<violationSeverity>warning</violationSeverity>
+							<sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.20</version>
+				<configuration>
+					<argLine> -Djava.net.preferIPv4Stack=true</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+		<testResources>
+			<testResource>
+				<filtering>true</filtering>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</testResource>
+		</testResources>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+	<dependencies>
+
+		<dependency>
+			<groupId>org.zeromq</groupId>
+			<artifactId>jeromq</artifactId>
+			<version>0.3.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${apachelog-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${apachelog-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${apachelog-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+			<version>${apachelog-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
+			<version>3.5.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.10</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+</project>
